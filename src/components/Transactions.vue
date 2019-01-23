@@ -1,6 +1,7 @@
 <template>
   <div class="card transactions-panel">
     <h1>Transactions</h1>
+    <span>{{ transactionRange }}</span>
     <TransactionItem v-for="transaction in transactions" :data="transaction" :key="transaction.id"></TransactionItem>
   </div>
 </template>
@@ -17,7 +18,10 @@ import { Transaction } from "./TransactionItem.vue";
 })
 export default class Transactions extends Vue {
   // Data
-  transactions: Array<Transaction> = [
+  private limit: number = 50;
+  private offset: number = 0;
+
+  private transactions: Transaction[] = [
     {
       id: 8888,
       status: 0,
@@ -42,6 +46,11 @@ export default class Transactions extends Vue {
   // Lifecycle Hook
   // Methods
   // Computed
+  get transactionRange(): string {
+    const from = this.offset * this.limit + 1;
+    const to = from + this.limit - 1;
+    return from + " to " + to;
+  }
 }
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-  <div class="transaction-item">
-    <div class="transaction-item-id">{{ id }}</div>
-    <div class="transaction-item-parents">{{ parents }}</div>
-    <div class="transaction-item-status" :class="[statusClass]">{{ status }}</div>
+  <div class="transaction-item" :class="$mq">
+    <div class="transaction-item-id" :class="$mq">{{ id }}</div>
+    <div class="transaction-item-status" :class="[statusClass, $mq]">{{ status }}</div>
+    <!-- <div class="expand"></div> -->
   </div>
 </template>
 
@@ -12,14 +12,14 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export interface Transaction {
   id: number;
   status: number;
-  parents: Array<string>;
+  parents: string[];
 }
 
 @Component
 export default class TransactionItem extends Vue {
-  @Prop({ required: true }) data!: Transaction;
-  //Data
-  statusClass: string = "";
+  @Prop({ required: true }) private data!: Transaction;
+  // Data
+  private statusClass: string = "";
   // Lifecycle Hooks
 
   // Methods
@@ -34,13 +34,13 @@ export default class TransactionItem extends Vue {
   }
 
   get status() {
-    if (this.data.status == 0) {
+    if (this.data.status === 0) {
       this.statusClass = "new";
       return "New";
-    } else if (this.data.status == 1) {
+    } else if (this.data.status === 1) {
       this.statusClass = "in-progress";
       return "In Progress";
-    } else if (this.data.status == 2) {
+    } else if (this.data.status === 2) {
       this.statusClass = "completed";
       return "Completed";
     } else {
@@ -54,36 +54,48 @@ export default class TransactionItem extends Vue {
 <style lang="scss" scoped>
 .transaction-item {
   display: grid;
-  grid-template-columns: 4fr 1 fr;
-  grid-template-rows: 1fr 1fr;
-  grid-row-gap: 10px;
+  grid-template-columns: 80% 20%;
   border-bottom: 1px solid #d2dae2;
   height: 70px;
   padding-top: 20px;
   padding-bottom: 20px;
 
+  &.mobile {
+    height: 50px;
+    grid-template-columns: 100%;
+  }
+
   &-id {
-    grid-column: 1 / 5;
-    // border: 3px solid red;
     font-size: 24px;
     font-weight: bold;
-  }
-  &-parents {
-    grid-column: 1 / 5;
-    // border: 3px solid red;
+    line-height: 70px;
+
+    &.mobile {
+      font-size: 18px;
+      line-height: 30px;
+    }
   }
 
   &-status {
-    grid-column: 5 / 6;
-    grid-row: 1 / 3;
+    width: 120px;
+    // line-height: 70px;
     text-align: center;
     margin: auto;
-    width: 120px;
-    line-height: 28px;
+    padding: auto;
     color: white;
+    font-size: 18px;
     background-color: #ff5e57;
     font-weight: 600;
-    // border: 3px solid red;
+
+    &.mobile {
+      margin: 0;
+      width: max-content;
+      padding-left: 5px;
+      padding-right: 5px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 12px;
+    }
   }
 
   .new {
