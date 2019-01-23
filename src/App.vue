@@ -4,11 +4,11 @@
     <mq-layout mq="mobile">
       <FooterMenu></FooterMenu>
     </mq-layout>
-    <Graph></Graph>
-    <Transactions></Transactions>
     <mq-layout mq="tablet+">
       <SimulationSwitch></SimulationSwitch>
     </mq-layout>
+    <Graph></Graph>
+    <Transactions></Transactions>
   </div>
 </template>
 
@@ -41,9 +41,9 @@ export default class App extends Vue {}
   color: #2c3e50;
   margin-top: 60px;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(2, minmax(100px, max-content));
-  grid-column: 1 / 3;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, minmax(100px, max-content));
+  // grid-column: 1 / 3;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 

@@ -59,7 +59,7 @@ export default class Transactions extends Vue {
 @import "../assets/styles.scss";
 
 .transactions-panel {
-  grid-column: 1 / 2;
+  grid-column: 1 / 3;
   text-align: left;
   padding: 20px;
 }
