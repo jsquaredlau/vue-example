@@ -50,7 +50,11 @@ export default class App extends Vue {}
   &.mobile {
     grid-template-columns: 2fr;
     grid-column-gap: 0px;
-    padding: 10px;
+    padding: 20px;
+  }
+
+  &.tablet {
+    padding: 20px;
   }
 }
 </style>

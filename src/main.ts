@@ -8,8 +8,8 @@ Vue.config.productionTip = false;
 Vue.use(VueMq, {
   breakpoints: {
     mobile: 450,
-    table: 900,
-    laptop: 1250,
+    tablet: 1250,
+    laptop: 1440,
     desktop: Infinity
   }
 });
