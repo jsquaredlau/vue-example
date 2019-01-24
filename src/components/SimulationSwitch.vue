@@ -8,6 +8,7 @@
       :class="{selected: currentApi == api}"
       @click="changeApi(api)"
     >{{ api }}</button>
+    <button class="api">{{ this.$store.state.dag.mostRecentTransaction }}</button>
   </div>
 </template>
 
@@ -22,6 +23,7 @@ export default class SimulationSwitch extends Vue {
   // Lifecycle Hook
   // Methods
   private changeApi(api: string) {
+    this.$store.commit("newTransaction");
     this.currentApi = api;
   }
   // Computed
