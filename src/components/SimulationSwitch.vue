@@ -8,7 +8,6 @@
       :class="{selected: currentApi == api}"
       @click="changeApi(api)"
     >{{ api }}</button>
-    <button class="api">{{ this.$store.state.dag.mostRecentTransaction }}</button>
   </div>
 </template>
 

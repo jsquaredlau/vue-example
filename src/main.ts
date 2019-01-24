@@ -2,8 +2,10 @@ import Vue from "vue";
 import VueMq from "vue-mq";
 import App from "./App.vue";
 import store from "./store";
+import VueWorker from "vue-worker";
 
 Vue.config.productionTip = false;
+
 
 Vue.use(VueMq, {
   breakpoints: {
@@ -13,6 +15,8 @@ Vue.use(VueMq, {
     desktop: Infinity
   }
 });
+
+Vue.use(VueWorker);
 
 new Vue({
   store,

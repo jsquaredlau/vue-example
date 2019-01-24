@@ -9,9 +9,12 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "i": "^0.3.6",
+    "npm": "^6.7.0",
     "vue": "^2.5.21",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
+    "vue-worker": "^1.2.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

@@ -29,7 +29,17 @@ import FooterMenu from "./components/FooterMenu.vue";
     FooterMenu
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  // Data
+
+  // Lifecycle Hooks
+  private mounted() {
+    this.$store.dispatch("createSimulation");
+  }
+  // Methods
+
+  // Computed
+}
 </script>
 
 <style lang="scss">
