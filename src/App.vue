@@ -51,7 +51,7 @@ export default class App extends Vue {
   color: #2c3e50;
   margin-top: 60px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
   grid-template-rows: repeat(3, minmax(100px, max-content));
   // grid-column: 1 / 3;
   grid-column-gap: 20px;
