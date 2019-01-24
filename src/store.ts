@@ -10,7 +10,7 @@ export default new Vuex.Store({
       edges: new Map(), // confirmed edges
       graph: new Array(),
       transactionList: new Array(), // Array of transactions and their parents
-      sortedTransactions: new Array(), // Array of topologically sorted transactions
+      sortedTransactions: new Array(), // Numerical order == topological order???
       latestTransaction: { id: -1, status: 2, parents: new Array() }
     }
   },

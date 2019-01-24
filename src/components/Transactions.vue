@@ -101,6 +101,7 @@ export default class Transactions extends Vue {
   span {
     margin-left: 20px;
     margin-right: 20px;
+    font-size: 24px;
   }
 }
 </style>
