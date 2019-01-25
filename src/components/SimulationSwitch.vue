@@ -1,5 +1,5 @@
 <template>
-  <div class="simulation-switch-panel" :class="$mq">
+  <div class="simulation-switch" :class="$mq">
     <h1 :class="$mq">Dashboard</h1>
     <button
       :class="[{active: currentApi === api}, $mq]"
@@ -18,6 +18,7 @@ export default class SimulationSwitch extends Vue {
   // Data
   private apis = ["alpha", "beta", "gamma"];
   // Lifecycle Hook
+
   // Methods
   private changeApi(api: string) {
     this.$store.commit("swapApi", api);
@@ -29,40 +30,37 @@ export default class SimulationSwitch extends Vue {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "../assets/styles.scss";
 
-.simulation-switch-panel {
-  text-align: left;
+.simulation-switch {
   display: flex;
-  padding: 20px;
   flex-wrap: wrap;
+  text-align: left;
+  padding: 20px;
 
   h1 {
     font-size: 30px;
-    // width: 100%;
 
     &.mobile {
-      // padding-left: 20px;
       width: 100%;
     }
   }
 
   button {
-    text-align: left;
-    height: 50px;
     width: 150px;
+    height: 50px;
+    opacity: 0.3;
     margin: auto 20px auto 20px;
-    font-size: 18px;
-    font-weight: 600;
-    color: #808e9b;
-    background-color: white;
+    outline: none;
+    text-align: left;
     border: 0px;
     border-bottom: 4px solid #575fcf;
-    opacity: 0.3;
+    color: #808e9b;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: white;
     transition: 0.2s ease-out;
-    outline: none;
     text-transform: capitalize;
 
     &:hover {
@@ -72,9 +70,9 @@ export default class SimulationSwitch extends Vue {
     }
 
     &.mobile {
+      width: max-content;
       margin: auto;
       font-size: 18px;
-      width: max-content;
     }
 
     &.active {
