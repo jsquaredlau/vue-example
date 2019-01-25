@@ -24,9 +24,7 @@ export default class TransactionItem extends Vue {
   // Methods
   private start_and_end(str) {
     if (str.length > 30) {
-      return (
-        str.substr(0, 10) + "..." + str.substr(str.length - 10, str.length)
-      );
+      return str.substr(0, 7) + "..." + str.substr(str.length - 7, str.length);
     }
     return str;
   }

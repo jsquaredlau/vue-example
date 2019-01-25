@@ -24,18 +24,20 @@ export default class Stats extends Vue {
     "Average transaction time",
     "Value per block"
   ];
-  // Life Cycle Hooks
+  // Lifecycle Hooks
+
   // Methods
+
   // Computed
 }
 </script>
 
 <style lang="scss" scoped>
 .stats-area {
-  height: 500px;
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  height: 500px;
+  width: 100%;
   margin-bottom: 60px;
 
   &.mobile {
@@ -44,9 +46,9 @@ export default class Stats extends Vue {
 
   &-label {
     display: block;
-    padding-left: 20px;
-    width: calc(100% - 40px);
     text-align: left;
+    width: calc(100% - 40px);
+    padding-left: 20px;
   }
 }
 </style>
