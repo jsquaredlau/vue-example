@@ -1,8 +1,10 @@
 <template>
   <div class="transaction-item" :class="$mq">
-    <div class="transaction-item-id" :class="$mq">{{ id }}</div>
+    <div
+      class="transaction-item-id"
+      :class="$mq"
+    >{{ start_and_end("Rindfleischetikettierungsueberwachungsaufgabenuebertragungsgesetz") }}</div>
     <div class="transaction-item-status" :class="[statusClass, $mq]">{{ status }}</div>
-    <!-- <div class="expand"></div> -->
   </div>
 </template>
 
@@ -23,6 +25,14 @@ export default class TransactionItem extends Vue {
   // Lifecycle Hooks
 
   // Methods
+  private start_and_end(str) {
+    if (str.length > 30) {
+      return (
+        str.substr(0, 10) + "..." + str.substr(str.length - 10, str.length)
+      );
+    }
+    return str;
+  }
 
   // Computed
   get id() {
@@ -53,48 +63,56 @@ export default class TransactionItem extends Vue {
 
 <style lang="scss" scoped>
 .transaction-item {
-  display: grid;
-  grid-template-columns: 80% 20%;
+  display: flex;
   border-bottom: 1px solid #d2dae2;
-  height: 70px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-
-  &.mobile {
-    height: 50px;
-    grid-template-columns: 100%;
-  }
+  // padding: 1
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  width: 100%;
 
   &-id {
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 70px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 28px;
+    width: 60%;
+    // margin: auto;
 
     &.mobile {
-      font-size: 18px;
+      font-size: 14px;
       line-height: 30px;
+    }
+
+    &.tablet {
+      font-size: 16px;
+      width: 50%;
     }
   }
 
   &-status {
-    width: 120px;
+    width: 30%;
     // line-height: 70px;
     text-align: center;
     margin: auto;
-    padding: auto;
     color: white;
-    font-size: 18px;
+    font-size: 12px;
     background-color: #ff5e57;
     font-weight: 600;
+    border-radius: 20px;
 
     &.mobile {
-      margin: 0;
-      width: max-content;
+      margin: auto;
+      width: calc(max-content + 10);
       padding-left: 5px;
       padding-right: 5px;
       height: 20px;
       line-height: 20px;
       font-size: 12px;
+    }
+
+    &.tablet {
+      font-size: 16px;
+      width: calc(max-content + 10);
     }
   }
 

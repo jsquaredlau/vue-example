@@ -1,6 +1,6 @@
 <template>
   <div class="simulation-switch-panel" :class="$mq">
-    <h1>Simulations</h1>
+    <h1 :class="$mq">Dashboard</h1>
     <button
       :class="[{active: currentApi === api}, $mq]"
       v-for="api in apis"
@@ -35,26 +35,26 @@ export default class SimulationSwitch extends Vue {
 
 .simulation-switch-panel {
   text-align: left;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 10px;
-
-  &.mobile {
-    grid-column-gap: 0;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
 
   h1 {
-    grid-column: 1 / 6;
+    font-size: 30px;
+    // width: 100%;
+
+    &.mobile {
+      // padding-left: 20px;
+      width: 100%;
+    }
   }
 
   button {
     text-align: left;
     height: 50px;
     width: 150px;
-    margin-bottom: 10px;
-    font-size: 24px;
+    margin: auto 20px auto 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #808e9b;
     background-color: white;
@@ -65,7 +65,14 @@ export default class SimulationSwitch extends Vue {
     outline: none;
     text-transform: capitalize;
 
+    &:hover {
+      color: #485460;
+      opacity: 1;
+      font-size: 24px;
+    }
+
     &.mobile {
+      margin: auto;
       font-size: 18px;
       width: max-content;
     }
@@ -73,6 +80,7 @@ export default class SimulationSwitch extends Vue {
     &.active {
       color: #485460;
       opacity: 1;
+      font-size: 24px;
     }
   }
 }

@@ -1,40 +1,42 @@
 <template>
-  <div class="card transactions-panel">
-    <h1>Transactions</h1>
-    <div class="pagination" :class="$mq">
-      <button
-        :class="$mq"
-        :style="{visibility: offset > 0 ? 'visible' : 'hidden'}"
-        @click="prevPage"
-      >Prev</button>
-      <span :class="$mq">{{ transactionRange }}</span>
-      <button
-        :class="$mq"
-        :style="{visibility: transactionCount >= offset + limit ? 'visible' : 'hidden'}"
-        @click="nextPage"
-      >More</button>
-    </div>
+  <div class="transactions-panel" :class="$mq">
+    <h3 class="transactions-panel-label">Transactions</h3>
+    <div class="card transactions-panel-list">
+      <div class="pagination" :class="$mq">
+        <button
+          :class="$mq"
+          :style="{visibility: offset > 0 ? 'visible' : 'hidden'}"
+          @click="prevPage"
+        >Prev</button>
+        <span :class="$mq">{{ transactionRange }}</span>
+        <button
+          :class="$mq"
+          :style="{visibility: transactionCount >= offset + limit ? 'visible' : 'hidden'}"
+          @click="nextPage"
+        >More</button>
+      </div>
 
-    <div class="list">
-      <TransactionItem
-        v-for="transaction in transactionList"
-        :data="transaction"
-        :key="transaction.id"
-      ></TransactionItem>
-    </div>
+      <div class="list">
+        <TransactionItem
+          v-for="transaction in transactionList"
+          :data="transaction"
+          :key="transaction.id"
+        ></TransactionItem>
+      </div>
 
-    <div class="pagination" :class="$mq">
-      <button
-        :class="$mq"
-        :style="{visibility: offset > 0 ? 'visible' : 'hidden'}"
-        @click="prevPage"
-      >Previous</button>
-      <span :class="$mq">{{ transactionRange }}</span>
-      <button
-        :class="$mq"
-        :style="{visibility: transactionCount >= offset + limit ? 'visible' : 'hidden'}"
-        @click="nextPage"
-      >More</button>
+      <div class="pagination" :class="$mq">
+        <button
+          :class="$mq"
+          :style="{visibility: offset > 0 ? 'visible' : 'hidden'}"
+          @click="prevPage"
+        >Previous</button>
+        <span :class="$mq">{{ transactionRange }}</span>
+        <button
+          :class="$mq"
+          :style="{visibility: transactionCount >= offset + limit ? 'visible' : 'hidden'}"
+          @click="nextPage"
+        >More</button>
+      </div>
     </div>
   </div>
 </template>
@@ -86,21 +88,36 @@ export default class Transactions extends Vue {
 @import "../assets/styles.scss";
 
 .transactions-panel {
-  grid-column: 1 / 3;
   text-align: left;
-  padding: 20px;
+  width: calc(100% - 40px);
+  flex-grow: 1;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+
+  &.mobile {
+    width: calc(100% - 40px);
+  }
+
+  &-label {
+    text-align: left;
+  }
+
+  &-list {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .pagination {
-  height: 100px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   text-align: center;
-  margin-top: 20px;
 
   button {
-    height: 50px;
-    width: 100px;
+    width: 70px;
     color: #3c40c6;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 10px;
     border: 1px solid #3c40c6;
     transition: 0.2s;
@@ -121,16 +138,12 @@ export default class Transactions extends Vue {
   span {
     margin-left: 20px;
     margin-right: 20px;
-    font-size: 24px;
+    font-size: 14px;
 
     &.mobile {
       width: 50px;
       font-size: 16px;
     }
   }
-}
-
-.list {
-  margin-bottom: 75px;
 }
 </style>

@@ -1,12 +1,18 @@
 <template>
   <div id="app" :class="$mq">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
     <!-- <mq-layout mq="mobile">
       <FooterMenu></FooterMenu>
     </mq-layout>-->
     <SimulationSwitch></SimulationSwitch>
-    <Graph></Graph>
-    <Transactions></Transactions>
+    <div class="dashboard">
+      <div class="graph-info" :class="$mq">
+        <Graph></Graph>
+        <Stats></Stats>
+      </div>
+      <div class="transaction-info" :class="$mq">
+        <Transactions></Transactions>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,6 +23,8 @@ import Graph from "./components/Graph.vue";
 import Transactions from "./components/Transactions.vue";
 import SimulationSwitch from "./components/SimulationSwitch.vue";
 import FooterMenu from "./components/FooterMenu.vue";
+import Stats from "./components/Stats.vue";
+import StatItem from "./components/StatItem.vue";
 
 @Component({
   components: {
@@ -24,7 +32,9 @@ import FooterMenu from "./components/FooterMenu.vue";
     Graph,
     Transactions,
     SimulationSwitch,
-    FooterMenu
+    FooterMenu,
+    Stats,
+    StatItem
   }
 })
 export default class App extends Vue {
@@ -53,22 +63,35 @@ export default class App extends Vue {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, minmax(100px, max-content));
-  // grid-column: 1 / 3;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  width: 100%;
+}
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.graph-info {
+  width: 70%;
 
   &.mobile {
-    grid-template-columns: 2fr;
-    grid-column-gap: 0px;
-    padding: 20px;
+    width: 100%;
   }
 
   &.tablet {
-    padding: 20px;
+    width: 100%;
+  }
+}
+
+.transaction-info {
+  width: 30%;
+
+  &.mobile {
+    width: 100%;
+  }
+
+  &.tablet {
+    width: 100%;
   }
 }
 </style>

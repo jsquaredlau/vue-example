@@ -1,17 +1,10 @@
 <template>
-  <div class="card graph-wrapper">
-    <div class="graph-panel">
-      <div id="cy" class="graph-panel-visual">
-        <svg height="100%" width="100%">
-          <g></g>
-        </svg>
-      </div>
-      <div class="graph-panel-summary">
-        <div style="background-color: #05c46b;"></div>
-        <div style="background-color: #575fcf;"></div>
-        <div style="background-color: #ff5e57;"></div>
-        <div style="background-color: #f53b57;"></div>
-      </div>
+  <div class="graph-panel" :class="$mq">
+    <h3 class="graph-panel-label">DAG Chart</h3>
+    <div id="cy" class="card graph-panel-visual">
+      <svg width="90%">
+        <g></g>
+      </svg>
     </div>
   </div>
 </template>
@@ -102,9 +95,6 @@ export default class Graph extends Vue {
 
 <style lang="scss" scoped>
 @import "../assets/styles.scss";
-.graph-wrapper {
-  grid-column: 1 / 3;
-}
 rect {
   fill: blue;
 }
@@ -134,17 +124,28 @@ rect {
 }
 
 .graph-panel {
-  height: 500px;
-  display: grid;
-  grid-template-rows: 5fr 1fr;
+  width: calc(100% - 40px);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 60px;
+
+  &.tablet {
+    width: calc(100% - 40px);
+    height: auto;
+  }
+
+  &.mobile {
+    width: calc(100% - 40px);
+    height: auto;
+    margin-bottom: 40px;
+  }
 
   &-visual {
     background-color: #b9cddd00;
   }
 
-  &-summary {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  &-label {
+    text-align: left;
   }
 }
 </style>

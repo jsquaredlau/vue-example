@@ -93,7 +93,7 @@ export default new Vuex.Store({
         return new Promise((resolve) => setTimeout(resolve, time));
       }
       while (true) {
-        await sleep(1000).then(() => {
+        await sleep(500).then(() => {
           context.commit("newTransaction", api);
         });
       }
