@@ -1,32 +1,24 @@
-import { expect } from "chai";
+// import { expect } from "chai";
 import { shallowMount, createLocalVue } from "@vue/test-utils";
-import Vuex from 'vuex'
-import Transactions from "../../src/components/Transactions.vue";
+import Vuex from "vuex";
+import App from "../../src/app.vue";
+import chai from "chai";
+import sinonChai from "sinon-chai";
+const expect = chai.expect;
+chai.use(sinonChai);
 
 const localVue = createLocalVue();
-
 localVue.use(Vuex);
 
-describe("Transactions.vue", () => {
-  let getters;
-  let store;
+const actions = {
+  createSimulation: () => { "foo"; },
+};
 
-  beforeEach(() => {
-    getters = {
-      totalTransactions: () => 60,
-      pageOfTransactions: () => () => { new Array(60) },
-    };
+const store = new Vuex.Store({ actions });
 
-    store = new Vuex.Store({
-      state: {},
-      getters
-    });
-  });
-
-  it("Pagination shows 'More' button when there are sufficient transactions", () => {
-    const wrapper = shallowMount(Transactions, { store, localVue });
-    // store.state.alpha.transactionList = new Array(60);
-    // expect(store.state.alpha.transactionList.length).equal(60);
-
+describe("App.vue", () => {
+  it("Graph gets created", () => {
+    const wrapper = shallowMount(App, { store, localVue });
+    expect(actions.createSimulation).should.have.been.called();
   });
 });

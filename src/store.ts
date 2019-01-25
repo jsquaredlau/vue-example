@@ -97,7 +97,7 @@ export default new Vuex.Store({
       };
 
       while (true) {
-        await sleep(500).then(() => {
+        await sleep(1000).then(() => {
           context.commit("newTransaction", api);
         });
       }
