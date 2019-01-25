@@ -48,6 +48,7 @@ export default new Vuex.Store({
     },
 
     newTransaction(state, api: string) {
+      // Callback for pseudo updating transaction status
       const updateStatus = (transaction, status: number) => {
         return new Promise((resolve) => {
           setTimeout(() => {
@@ -64,7 +65,7 @@ export default new Vuex.Store({
         parents: new Array()
       };
 
-      // Add to our list of transactions
+      // Add it to our list of transactions
       state[api].transactionList.unshift(newTransaction);
       state[api].latestTransaction = newTransaction;
 
@@ -80,17 +81,21 @@ export default new Vuex.Store({
       state[api].graph.push(transactionParents);
 
       // Topologically place the transaction
+      /* If i'm not wrong because we add nodes consecutivvely it's
+         already topologically sorted? */
       state[api].sortedTransactions.push(newTransaction);
 
+      // Activate the status updater
       updateStatus(newTransaction, 1)
         .then(() => updateStatus(newTransaction, 2));
     }
   },
   actions: {
     async createSimulation(context, api: string) {
-      function sleep(time: number) {
+      const sleep = (time: number) => {
         return new Promise((resolve) => setTimeout(resolve, time));
-      }
+      };
+
       while (true) {
         await sleep(500).then(() => {
           context.commit("newTransaction", api);
