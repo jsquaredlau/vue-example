@@ -3,7 +3,6 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-
 export default new Vuex.Store({
   state: {
     currentApi: "alpha",
@@ -15,22 +14,22 @@ export default new Vuex.Store({
       latestTransaction: { id: -1, status: 2, parents: new Array() }
     },
     beta: {
-      edges: new Map(), // confirmed edges
+      edges: new Map(),
       graph: new Array(),
-      transactionList: new Array(), // Array of transactions and their parents
-      sortedTransactions: new Array(), // Numerical order == topological order???
+      transactionList: new Array(),
+      sortedTransactions: new Array(),
       latestTransaction: { id: -1, status: 2, parents: new Array() }
     },
     gamma: {
-      edges: new Map(), // confirmed edges
+      edges: new Map(),
       graph: new Array(),
-      transactionList: new Array(), // Array of transactions and their parents
-      sortedTransactions: new Array(), // Numerical order == topological order???
+      transactionList: new Array(),
+      sortedTransactions: new Array(),
       latestTransaction: { id: -1, status: 2, parents: new Array() }
     }
   },
   getters: {
-    mostRecentTransactions: (state) => (limit = 50, offset = 0) => {
+    pageOfTransactions: (state) => (limit = 50, offset = 0) => {
       if (offset + limit > state[state.currentApi].transactionList.length) {
         return state[state.currentApi].transactionList
           .slice(offset, state[state.currentApi].transactionList.length);

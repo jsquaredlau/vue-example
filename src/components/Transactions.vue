@@ -57,6 +57,7 @@ export default class Transactions extends Vue {
   private offset: number = 0;
 
   // Lifecycle Hook
+
   // Methods
   private nextPage() {
     this.offset += this.limit;
@@ -68,7 +69,7 @@ export default class Transactions extends Vue {
 
   // Computed
   get transactionList(): any[] {
-    return this.$store.getters.mostRecentTransactions(this.limit, this.offset);
+    return this.$store.getters.pageOfTransactions(this.limit, this.offset);
   }
 
   get transactionCount(): number {
@@ -83,14 +84,13 @@ export default class Transactions extends Vue {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "../assets/styles.scss";
 
 .transactions-panel {
-  text-align: left;
   width: calc(100% - 40px);
   flex-grow: 1;
+  text-align: left;
   padding-right: 20px;
   padding-left: 20px;
   margin-bottom: 20px;
@@ -116,17 +116,17 @@ export default class Transactions extends Vue {
 
   button {
     width: 70px;
+    background-color: white;
+    border: 1px solid #3c40c6;
+    border-radius: 10px;
     color: #3c40c6;
     font-size: 14px;
-    border-radius: 10px;
-    border: 1px solid #3c40c6;
     transition: 0.2s;
     outline: none;
-    background-color: white;
 
     &:hover {
-      color: white;
       background-color: #3c40c6;
+      color: white;
     }
 
     &.mobile {

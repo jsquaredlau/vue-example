@@ -18,7 +18,6 @@ import { Component, Vue } from "vue-property-decorator";
 import Graph from "./components/Graph.vue";
 import Transactions from "./components/Transactions.vue";
 import SimulationSwitch from "./components/SimulationSwitch.vue";
-import FooterMenu from "./components/FooterMenu.vue";
 import Stats from "./components/Stats.vue";
 import StatItem from "./components/StatItem.vue";
 
@@ -27,7 +26,6 @@ import StatItem from "./components/StatItem.vue";
     Graph,
     Transactions,
     SimulationSwitch,
-    FooterMenu,
     Stats,
     StatItem
   }
