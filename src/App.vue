@@ -1,8 +1,5 @@
 <template>
-  <div id="app" :class="$mq">
-    <!-- <mq-layout mq="mobile">
-      <FooterMenu></FooterMenu>
-    </mq-layout>-->
+  <div id="app">
     <SimulationSwitch></SimulationSwitch>
     <div class="dashboard">
       <div class="graph-info" :class="$mq">
@@ -18,7 +15,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// import HelloWorld from "./components/HelloWorld.vue";
 import Graph from "./components/Graph.vue";
 import Transactions from "./components/Transactions.vue";
 import SimulationSwitch from "./components/SimulationSwitch.vue";
@@ -28,7 +24,6 @@ import StatItem from "./components/StatItem.vue";
 
 @Component({
   components: {
-    // HelloWorld,
     Graph,
     Transactions,
     SimulationSwitch,
