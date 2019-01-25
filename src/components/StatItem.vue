@@ -12,16 +12,19 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class StatItem extends Vue {
   @Prop() private stat!: string;
-
   // Data
+
   // Life Cycle Hooks
+
   // Methods
+
   // Computed
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/styles.scss";
+
 .wrapper {
   width: calc(50% - 40px);
   padding-right: 20px;
