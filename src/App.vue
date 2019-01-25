@@ -1,12 +1,10 @@
 <template>
   <div id="app" :class="$mq">
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
-    <mq-layout mq="mobile">
+    <!-- <mq-layout mq="mobile">
       <FooterMenu></FooterMenu>
-    </mq-layout>
-    <mq-layout mq="tablet+">
-      <SimulationSwitch></SimulationSwitch>
-    </mq-layout>
+    </mq-layout>-->
+    <SimulationSwitch></SimulationSwitch>
     <Graph></Graph>
     <Transactions></Transactions>
   </div>
@@ -34,7 +32,13 @@ export default class App extends Vue {
 
   // Lifecycle Hooks
   private mounted() {
-    this.$store.dispatch("createSimulation");
+    this.$store.dispatch("createSimulation", "alpha");
+    setTimeout(() => {
+      this.$store.dispatch("createSimulation", "beta");
+    }, 5000);
+    setTimeout(() => {
+      this.$store.dispatch("createSimulation", "gamma");
+    }, 10000);
   }
   // Methods
 
@@ -51,7 +55,7 @@ export default class App extends Vue {
   color: #2c3e50;
   margin-top: 60px;
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: 1fr;
   grid-template-rows: repeat(3, minmax(100px, max-content));
   // grid-column: 1 / 3;
   grid-column-gap: 20px;

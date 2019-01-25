@@ -1,23 +1,37 @@
 <template>
   <div class="card transactions-panel">
     <h1>Transactions</h1>
-    <div class="pagination">
-      <button :style="{visibility: offset > 0 ? 'visible' : 'hidden'}" @click="prevPage">Previous</button>
-      <span>{{ transactionRange }}</span>
+    <div class="pagination" :class="$mq">
       <button
+        :class="$mq"
+        :style="{visibility: offset > 0 ? 'visible' : 'hidden'}"
+        @click="prevPage"
+      >Prev</button>
+      <span :class="$mq">{{ transactionRange }}</span>
+      <button
+        :class="$mq"
         :style="{visibility: transactionCount >= offset + limit ? 'visible' : 'hidden'}"
         @click="nextPage"
       >More</button>
     </div>
-    <TransactionItem
-      v-for="transaction in transactionList"
-      :data="transaction"
-      :key="transaction.id"
-    ></TransactionItem>
-    <div class="pagination">
-      <button :style="{visibility: offset > 0 ? 'visible' : 'hidden'}" @click="prevPage">Previous</button>
-      <span>{{ transactionRange }}</span>
+
+    <div class="list">
+      <TransactionItem
+        v-for="transaction in transactionList"
+        :data="transaction"
+        :key="transaction.id"
+      ></TransactionItem>
+    </div>
+
+    <div class="pagination" :class="$mq">
       <button
+        :class="$mq"
+        :style="{visibility: offset > 0 ? 'visible' : 'hidden'}"
+        @click="prevPage"
+      >Previous</button>
+      <span :class="$mq">{{ transactionRange }}</span>
+      <button
+        :class="$mq"
         :style="{visibility: transactionCount >= offset + limit ? 'visible' : 'hidden'}"
         @click="nextPage"
       >More</button>
@@ -91,10 +105,16 @@ export default class Transactions extends Vue {
     border: 1px solid #3c40c6;
     transition: 0.2s;
     outline: none;
+    background-color: white;
 
     &:hover {
       color: white;
       background-color: #3c40c6;
+    }
+
+    &.mobile {
+      width: 50px;
+      font-size: 14px;
     }
   }
 
@@ -102,6 +122,15 @@ export default class Transactions extends Vue {
     margin-left: 20px;
     margin-right: 20px;
     font-size: 24px;
+
+    &.mobile {
+      width: 50px;
+      font-size: 16px;
+    }
   }
+}
+
+.list {
+  margin-bottom: 75px;
 }
 </style>

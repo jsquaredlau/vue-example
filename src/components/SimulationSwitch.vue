@@ -1,11 +1,10 @@
 <template>
-  <div class="simulation-switch-panel">
+  <div class="simulation-switch-panel" :class="$mq">
     <h1>Simulations</h1>
     <button
+      :class="[{active: currentApi === api}, $mq]"
       v-for="api in apis"
       :key="api"
-      class="api"
-      :class="{selected: currentApi == api}"
       @click="changeApi(api)"
     >{{ api }}</button>
   </div>
@@ -17,15 +16,16 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class SimulationSwitch extends Vue {
   // Data
-  private apis = ["Alpha", "Beta", "Gamma"];
-  private currentApi: string = "Alpha";
+  private apis = ["alpha", "beta", "gamma"];
   // Lifecycle Hook
   // Methods
   private changeApi(api: string) {
-    this.$store.commit("newTransaction");
-    this.currentApi = api;
+    this.$store.commit("swapApi", api);
   }
   // Computed
+  get currentApi() {
+    return this.$store.state.currentApi;
+  }
 }
 </script>
 
@@ -35,13 +35,17 @@ export default class SimulationSwitch extends Vue {
 
 .simulation-switch-panel {
   text-align: left;
-  padding: 20px;
+  // padding: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
 
+  &.mobile {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   h1 {
-    grid-column: 1 / 5;
+    grid-column: 1 / 6;
   }
 
   button {
@@ -58,8 +62,14 @@ export default class SimulationSwitch extends Vue {
     opacity: 0.3;
     transition: 0.2s ease-out;
     outline: none;
+    text-transform: capitalize;
 
-    &.selected {
+    &.mobile {
+      font-size: 18px;
+      width: max-content;
+    }
+
+    &.active {
       color: #485460;
       opacity: 1;
     }
