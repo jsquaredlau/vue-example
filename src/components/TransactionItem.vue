@@ -1,9 +1,6 @@
 <template>
   <div class="transaction-item" :class="$mq">
-    <div
-      class="transaction-item-id"
-      :class="$mq"
-    >{{ start_and_end("Rindfleischetikettierungsueberwachungsaufgabenuebertragungsgesetz") }}</div>
+    <div class="transaction-item-id" :class="$mq">{{ start_and_end(random64String()) }}</div>
     <div class="transaction-item-status" :class="[statusClass, $mq]">{{ status }}</div>
   </div>
 </template>
@@ -32,6 +29,23 @@ export default class TransactionItem extends Vue {
       );
     }
     return str;
+  }
+
+  private random64String() {
+    return (
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15)
+    );
   }
 
   // Computed
