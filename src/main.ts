@@ -6,7 +6,6 @@ import VueWorker from "vue-worker";
 
 Vue.config.productionTip = false;
 
-
 Vue.use(VueMq, {
   breakpoints: {
     mobile: 450,
