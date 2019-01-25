@@ -26,6 +26,7 @@ export default class StatItem extends Vue {
   width: calc(50% - 40px);
   padding-right: 20px;
   padding-left: 20px;
+  margin-bottom: 30px;
 }
 
 .stat-item {
