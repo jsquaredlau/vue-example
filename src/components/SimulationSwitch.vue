@@ -35,13 +35,14 @@ export default class SimulationSwitch extends Vue {
 
 .simulation-switch-panel {
   text-align: left;
-  // padding: 20px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 10px;
 
   &.mobile {
-    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
 
   h1 {
