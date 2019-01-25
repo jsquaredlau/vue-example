@@ -1,6 +1,6 @@
 <template>
   <div class="transaction-item" :class="$mq">
-    <div class="transaction-item-id" :class="$mq">{{ start_and_end(random64String()) }}</div>
+    <div class="transaction-item-id" :class="$mq">{{ truncate(random64String()) }}</div>
     <div class="transaction-item-status" :class="[statusClass, $mq]">{{ status }}</div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default class TransactionItem extends Vue {
   // Lifecycle Hooks
 
   // Methods
-  private start_and_end(str) {
+  private truncate(str) {
     if (str.length > 30) {
       return str.substr(0, 7) + "..." + str.substr(str.length - 7, str.length);
     }
@@ -30,20 +30,10 @@ export default class TransactionItem extends Vue {
   }
 
   private random64String() {
-    return (
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15)
-    );
+    return Math.random()
+      .toString(16)
+      .substring(2, 15)
+      .repeat(3);
   }
 
   // Computed
@@ -75,56 +65,53 @@ export default class TransactionItem extends Vue {
 
 <style lang="scss" scoped>
 .transaction-item {
+  width: 100%;
   display: flex;
+  text-align: center;
   border-bottom: 1px solid #d2dae2;
-  // padding: 1
   padding-top: 15px;
   padding-bottom: 15px;
-  text-align: center;
-  width: 100%;
 
   &-id {
+    width: 60%;
+    line-height: 28px;
     font-size: 14px;
     font-weight: 500;
-    line-height: 28px;
-    width: 60%;
-    // margin: auto;
+
+    &.tablet {
+      width: 50%;
+      line-height: 32px;
+      font-size: 16px;
+    }
 
     &.mobile {
       font-size: 14px;
-      line-height: 30px;
-    }
-
-    &.tablet {
-      font-size: 16px;
-      width: 50%;
     }
   }
 
   &-status {
     width: 30%;
-    // line-height: 70px;
-    text-align: center;
     margin: auto;
+    text-align: center;
     color: white;
-    font-size: 12px;
     background-color: #ff5e57;
+    font-size: 12px;
     font-weight: 600;
     border-radius: 20px;
 
-    &.mobile {
-      margin: auto;
+    &.tablet {
       width: calc(max-content + 10);
-      padding-left: 5px;
-      padding-right: 5px;
-      height: 20px;
-      line-height: 20px;
-      font-size: 12px;
+      font-size: 16px;
     }
 
-    &.tablet {
-      font-size: 16px;
+    &.mobile {
       width: calc(max-content + 10);
+      height: 20px;
+      margin: auto;
+      padding-left: 5px;
+      padding-right: 5px;
+      line-height: 20px;
+      font-size: 12px;
     }
   }
 
